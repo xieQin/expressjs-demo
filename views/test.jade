@@ -1,0 +1,13 @@
+extends layout
+
+block content
+	ul
+		each value, index in data
+			li
+				p= value.title
+				img(src=value.picture)
+				p= value.abstract
+				p
+					span= '发布时间: '+ value._dates
+					sapn= ' 观看次数: ' + value.look
+				p!= value.content
