@@ -6,7 +6,9 @@ var des = {
 		var key = new Buffer(key, "utf8");
 
 		var cipher = crypto.createCipheriv('des-cbc', key, iv);
+		console.log(iv);
 		str = cipher.update(str, 'utf8', 'base64') + cipher.final('base64');
+		console.log(str);
 
 		str = str.replace(/\//g, "@@")
 

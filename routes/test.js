@@ -12,7 +12,8 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/decode/:query', function(req, res, next) {
-	var encode = des.encode(req.params.query, 'JiwLYG=-');
+	// var encode = des.encode(req.params.query, 'JiwLYG=-');
+	var encode = req.params.query;
 	var decode = des.decode(encode, 'JiwLYG=-');
 	res.send(decode);
 });
