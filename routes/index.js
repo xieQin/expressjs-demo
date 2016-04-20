@@ -4,6 +4,7 @@ var superagent = require('superagent');
 var cheerio = require('cheerio');
 var eventproxy = require('eventproxy');
 var url = require('url');
+var async = require('async');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -25,6 +26,23 @@ router.get('/', function(req, res, next) {
         // });
       });
       console.log(topicUrls);
+      var concurrencyCount = 0;
+      var fetchUrl = function (url, callback) {
+        var delay = parseInt((Math.random() * 10000000) % 2000, 10);
+        concurrencyCount++;
+        console.log('现在的并发数是', concurrencyCount, '，正在抓取的是', url, '，耗时' + delay + '毫秒');
+        setTimeout(function () {
+          concurrencyCount--;
+          callback(null, url + ' html content');
+        }, delay);
+      };
+
+      async.mapLimit(topicUrls, 5, function (url, callback) {
+        fetchUrl(url, callback);
+      }, function (err, result) {
+        console.log('final:');
+        console.log(result);
+      });
 
       res.send(topicUrls);
     });
