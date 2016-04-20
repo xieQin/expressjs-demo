@@ -17,6 +17,7 @@
   "devDependencies": {
     "bluebird": "^3.3.4",
     "cheerio": "^0.20.0",
+    "eventproxy": "^0.3.4",
     "expect.js": "^0.3.1",
     "memcached": "^2.2.1",
     "superagent": "^1.8.1",
