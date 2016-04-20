@@ -20,10 +20,10 @@ router.get('/', function(req, res, next) {
         var $element = $(element);
         var href = url.resolve('https://cnodejs.org/', $element.attr('href'))
         topicUrls.push(href);
-        // items.push({
-        //   title: $element.attr('title'),
-        //   href: $element.attr('href')
-        // });
+        items.push({
+          title: $element.attr('title'),
+          href: $element.attr('href')
+        });
       });
       console.log(topicUrls);
       var concurrencyCount = 0;
